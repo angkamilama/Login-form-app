@@ -2,22 +2,37 @@ import React, { useRef, useState } from "react";
 import style from "./style.css";
 
 function App() {
-  const nameRef = useRef();
-  const passwordRef = useRef();
+  const [userInfo, setUserInfo] = useState();
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [showUserError, setShowUserError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleForm = (e) => {
     e.preventDefault();
-    if (nameRef.current.value === "") {
-      setShowUserError((showUserError) => !showUserError);
-    }
-    if (passwordRef.current.value === "") {
-      setShowPasswordError((showPasswordError) => !showPasswordError);
+    if (!name && password) {
+      setShowUserError(true);
+      return;
+    } else if (name & !password) {
+      setShowPasswordError(true);
+      return;
+    } else if (!name & !password) {
+      setShowUserError(true);
+      setShowPasswordError(true);
+    } else {
+      setUserInfo({
+        username: name,
+        password: password,
+      });
+      setName("");
+      setPassword("");
+      setShowPasswordError(false);
+      setShowUserError(false);
     }
   };
 
+  console.log(userInfo);
   return (
     <>
       <div className="container">
@@ -28,15 +43,13 @@ function App() {
             <label className="username-container">
               <p>Username</p>
               <input
-                type="email"
-                ref={nameRef}
-                onClick={() => {
-                  setShowUserError(false);
-                }}
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your username..."
               />
               {showUserError ? (
-                <p className="input-error">A username is required</p>
+                <p className="input-error">Please fill in the username</p>
               ) : null}
             </label>
             <label>
@@ -45,17 +58,14 @@ function App() {
                 <div className="password-container">
                   <input
                     type="text"
-                    onClick={() => {
-                      setShowPasswordError(false);
-                    }}
-                    ref={passwordRef}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password..."
                   />
                   <button
+                    type="button"
                     className="show-btn"
-                    onClick={(e) =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
+                    onClick={() => setShowPassword(false)}
                   >
                     Hide
                   </button>
@@ -64,31 +74,24 @@ function App() {
                 <div className="password-container">
                   <input
                     type="password"
-                    ref={passwordRef}
-                    onClick={() => {
-                      if (showPasswordError) {
-                        setShowPasswordError(false);
-                      }
-                    }}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password..."
                   />
                   <button
+                    type="button"
                     className="show-btn"
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
+                    onClick={() => setShowPassword(true)}
                   >
                     Show
                   </button>
                 </div>
               )}
               {showPasswordError ? (
-                <p className="input-error">A password is required</p>
+                <p className="input-error">Please fill in the Password</p>
               ) : null}
             </label>
-            <button type="submit" className="login-btn">
-              Login
-            </button>
+            <button className="login-btn">Login</button>
           </form>
         </div>
       </div>
