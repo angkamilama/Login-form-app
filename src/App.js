@@ -15,7 +15,7 @@ function App() {
       setShowUserError(true);
     } else if (password === "") {
       setShowPasswordError(true);
-    } else if ((name === " ") & (password === "")) {
+    } else if (name === " " && password === "") {
       setShowUserError(true);
       setShowPasswordError(true);
     } else {
@@ -79,7 +79,11 @@ function App() {
                   <button
                     type="button"
                     className="show-btn"
-                    onClick={() => setShowPassword(true)}
+                    onClick={() => {
+                      if (password !== "") {
+                        setShowPassword(true);
+                      }
+                    }}
                   >
                     Show
                   </button>
