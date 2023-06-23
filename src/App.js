@@ -11,13 +11,11 @@ function App() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    if (!name && password) {
+    if (name === "") {
       setShowUserError(true);
-      return;
-    } else if (name & !password) {
+    } else if (password === "") {
       setShowPasswordError(true);
-      return;
-    } else if (!name & !password) {
+    } else if ((name === " ") & (password === "")) {
       setShowUserError(true);
       setShowPasswordError(true);
     } else {
