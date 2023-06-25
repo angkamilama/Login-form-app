@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans:wght@400;600&family=Work+Sans:wght@400;500&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 body {
@@ -17,6 +21,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
+    border: 1px solid red;
 }
           
 
@@ -27,7 +32,7 @@ form {
     align-items: flex-start;
     height: 350px;
     max-width: 330px;
-    margin: 30px auto;
+    margin: 10px auto;
 }
 
 label p {
@@ -72,6 +77,12 @@ button {
     color: white;
     border: none;
     width: 300px;
+}
+
+.login-msg {
+    color:  rgb(0 185 185);
+    padding: 7px;
+
 }
 
 

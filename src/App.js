@@ -11,16 +11,18 @@ function App() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    if (name === "") {
-      setShowUserError(true);
-    } else if (password === "") {
-      setShowPasswordError(true);
-    } else if (name === " " && password === "") {
+    if (!name && !password) {
       setShowUserError(true);
       setShowPasswordError(true);
+    } else if (!name && password) {
+      setShowUserError(true);
+      setShowPasswordError(false);
+    } else if (name && !password) {
+      setShowPasswordError(true);
+      setShowUserError(false);
     } else {
       setUserInfo({
-        username: name,
+        name: name,
         password: password,
       });
       setName("");
@@ -96,6 +98,11 @@ function App() {
             <button className="login-btn">Login</button>
           </form>
         </div>
+        {userInfo ? (
+          <p className="login-msg">
+            Thank you for login. You have been logged in as {userInfo.name}
+          </p>
+        ) : null}
       </div>
     </>
   );
