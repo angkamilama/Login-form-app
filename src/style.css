@@ -16,11 +16,12 @@ body {
 .container {
     margin: 20px auto;
     max-width: 375px;
-    height: 600px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
+
 }
           
 
@@ -87,14 +88,14 @@ button {
 
 @media screen and (min-width: 490px){
 
-   
-
     .container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         max-width: 600px;
+        height: 50vh;
+        margin: 200px auto;
     }
 
     .form-container {
